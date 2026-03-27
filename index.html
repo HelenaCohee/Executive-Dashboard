@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q1 2026 Onboarding Program Executive Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--accent:#6366f1;--accent2:#818cf8;--dark:#0a0b0f;--card:#111318;--card2:#181b22;--card3:#1e2129;--text:#f0f0f0;--muted:#888;--muted2:#666;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--d1:#22c55e;--d2:#3b82f6;--warn:#f59e0b;--danger:#ef4444;--await:#a78bfa}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;overflow-x:hidden}
+.site-header{position:sticky;top:0;z-index:200;background:var(--dark);border-bottom:1px solid var(--border)}
+.site-header-inner{padding:28px 36px 0}
+.site-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.site-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,3.5vw,44px);letter-spacing:1px;line-height:1;color:var(--text);margin-bottom:8px}
+.site-tagline{font-size:13px;color:var(--muted);line-height:1.6;padding-bottom:20px;max-width:680px}
+.nav-accentline{height:3px;background:var(--accent);width:100%}
+.nav-tabs-row{display:flex;overflow-x:auto;gap:0;background:var(--dark)}
+.nav-tabs-row::-webkit-scrollbar{display:none}
+.nav-tab{padding:16px 28px 14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;flex-shrink:0;transition:color .15s,border-color .15s;user-select:none}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.page{display:none;animation:fadeUp .3s ease}.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 60px 60px;overflow:hidden;background:#111318}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(99,102,241,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(34,197,94,.07) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 90% 10%,rgba(59,130,246,.07) 0%,transparent 60%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 100% 100% at 50% 50%,black 30%,transparent 80%)}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;opacity:0;animation:fadeUp .6s .2s forwards}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,10vw,140px);line-height:.9;letter-spacing:2px;margin-bottom:32px;opacity:0;animation:fadeUp .7s .35s forwards}
+.hero-title span{color:var(--accent)}
+.hero-sub{font-size:17px;color:var(--muted);font-weight:300;max-width:560px;margin-bottom:60px;opacity:0;animation:fadeUp .7s .5s forwards}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:900px;opacity:0;animation:fadeUp .7s .65s forwards}
+.hstat{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:28px 24px;position:relative;overflow:hidden}
+.hstat::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px}
+.hstat.g::before{background:var(--d1)}.hstat.b::before{background:var(--d2)}.hstat.a::before{background:var(--accent)}.hstat.w::before{background:var(--warn)}
+.hstat-n{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;margin-bottom:6px}
+.hstat.g .hstat-n{color:var(--d1)}.hstat.b .hstat-n{color:var(--d2)}.hstat.a .hstat-n{color:var(--accent)}.hstat.w .hstat-n{color:var(--warn)}
+.hstat-l{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace}
+section{padding:100px 60px;border-top:1px solid var(--border);position:relative}
+.sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,5vw,72px);line-height:1;letter-spacing:1px;margin-bottom:48px;color:var(--text)}
+.day-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:48px}
+.day-card{background:var(--card);border:1px solid var(--border);padding:48px 40px;position:relative;overflow:hidden}
+.day-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.day-card.d1::after{background:var(--d1)}.day-card.d2::after{background:var(--d2)}
+.day-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.d1 .day-label{color:var(--d1)}.d2 .day-label{color:var(--d2)}
+.day-name{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;margin-bottom:4px}
+.day-venue{font-size:12px;color:var(--muted);margin-bottom:40px;font-family:'DM Mono',monospace}
+.day-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px}
+.dm-n{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;margin-bottom:4px}
+.d1 .dm-n{color:var(--d1)}.d2 .dm-n{color:var(--d2)}
+.dm-l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-family:'DM Mono',monospace}
+.day-bar-wrap{margin-bottom:8px}
+.day-bar-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.day-bar-label strong{color:var(--text);font-weight:500}
+.day-bar-track{height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.day-bar-fill{height:100%;border-radius:3px;width:0;transition:width 1.2s cubic-bezier(.25,.46,.45,.94)}
+.day-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+.dpill{font-size:11px;padding:4px 10px;border-radius:2px;font-family:'DM Mono',monospace;letter-spacing:.5px}
+.dpill.g{background:rgba(34,197,94,.12);color:var(--d1);border:1px solid rgba(34,197,94,.2)}
+.dpill.b{background:rgba(59,130,246,.12);color:var(--d2);border:1px solid rgba(59,130,246,.2)}
+.dpill.w{background:rgba(245,166,35,.12);color:var(--warn);border:1px solid rgba(245,166,35,.2)}
+.dpill.r{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.dpill.m{background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border)}
+.sat-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:48px}
+.sat-card{background:var(--card);border:1px solid var(--border);padding:48px 40px;display:flex;align-items:center;gap:40px}
+.sat-ring-wrap{position:relative;flex-shrink:0}.sat-ring-wrap svg{transform:rotate(-90deg)}
+.sat-ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sat-ring-n{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1}
+.d1 .sat-ring-n{color:var(--d1)}.d2 .sat-ring-n{color:var(--d2)}
+.sat-ring-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+.sat-info{flex:1}
+.sat-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;margin-bottom:8px}
+.sat-venue{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:20px}
+.sat-findings{list-style:none}
+.sat-findings li{font-size:13px;color:#bbb;padding:8px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start}
+.sat-findings li::before{content:'\2192';color:var(--muted);flex-shrink:0}
+.sat-findings li:last-child{border-bottom:none}
+.verdict-wrap{background:var(--card);border:1px solid var(--border);padding:64px;position:relative;overflow:hidden;margin-bottom:48px}
+.verdict-wrap::before{content:'\201C';position:absolute;top:-20px;left:40px;font-family:'Bebas Neue',sans-serif;font-size:240px;color:rgba(99,102,241,.06);line-height:1;pointer-events:none}
+.verdict-text{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,4vw,56px);line-height:1.1;letter-spacing:1px;position:relative;max-width:900px}
+.verdict-text em{color:var(--accent);font-style:normal}
+.verdict-attr{margin-top:24px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.fb-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:2px}
+.fb-card{background:var(--card);border:1px solid var(--border);padding:40px;position:relative;overflow:hidden}
+.fb-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.fb-card.d1::after{background:var(--d1)}.fb-card.d2::after{background:var(--d2)}
+.fb-card-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;margin-bottom:4px}
+.d1 .fb-card-title{color:var(--d1)}.d2 .fb-card-title{color:var(--d2)}
+.fb-meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:28px}
+.fb-scores{margin-bottom:32px}
+.fb-score-row{display:grid;grid-template-columns:1fr 40px;align-items:center;gap:12px;margin-bottom:10px}
+.fb-score-bar-wrap{display:flex;align-items:center;gap:10px}
+.fb-score-label{font-size:12px;color:#bbb;white-space:nowrap;min-width:130px}
+.fb-score-track{flex:1;height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.fb-score-fill{height:100%;border-radius:3px;width:0;transition:width 1.3s cubic-bezier(.25,.46,.45,.94)}
+.fb-score-val{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;text-align:right}
+.d1 .fb-score-val{color:var(--d1)}.d2 .fb-score-val{color:var(--d2)}
+.fb-sessions-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.fb-session-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.fb-session-rank{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);width:16px;flex-shrink:0}
+.fb-session-name{font-size:12px;color:#ccc;flex:1}
+.fb-session-bar-wrap{width:80px;height:4px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.fb-session-bar{height:100%;border-radius:2px;width:0;transition:width 1.4s cubic-bezier(.25,.46,.45,.94)}
+.fb-session-val{font-family:'DM Mono',monospace;font-size:11px;width:28px;text-align:right;flex-shrink:0}
+.d1 .fb-session-val{color:var(--d1)}.d2 .fb-session-val{color:var(--d2)}
+.fb-focus{display:flex;align-items:center;gap:16px;margin-top:28px;padding-top:24px;border-top:1px solid var(--border)}
+.fb-focus-n{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;flex-shrink:0}
+.d1 .fb-focus-n{color:var(--d1)}.d2 .fb-focus-n{color:var(--d2)}
+.fb-focus-text{font-size:12px;color:#aaa;line-height:1.5}.fb-focus-text strong{color:var(--text)}
+.fb-response-banner{background:rgba(255,255,255,.03);border:1px solid var(--border);padding:20px 32px;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px;flex-wrap:wrap;gap:16px}
+.fb-response-item{display:flex;align-items:baseline;gap:8px}
+.fb-response-n{font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:1}
+.fb-response-l{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.fb-themes-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:2px}
+.fb-theme-card{background:var(--card);border:1px solid var(--border);padding:28px 24px}
+.fb-theme-icon{font-size:22px;margin-bottom:10px}
+.fb-theme-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.fb-theme-label.g{color:var(--d1)}.fb-theme-label.w{color:var(--warn)}.fb-theme-label.r{color:var(--danger)}
+.fb-theme-title{font-size:14px;font-weight:700;line-height:1.4;margin-bottom:8px}
+.fb-theme-body{font-size:12px;color:var(--muted);line-height:1.7}
+.fb-quotes-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.fb-quote-card{background:var(--card);border:1px solid var(--border);padding:32px 28px}
+.fb-quote-day{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.fb-quote-day.d1{color:var(--d1)}.fb-quote-day.d2{color:var(--d2)}
+.fb-quote-mark{font-family:'Bebas Neue',sans-serif;font-size:60px;line-height:.6;color:rgba(99,102,241,.15);margin-bottom:12px;display:block}
+.fb-quote-text{font-size:13px;color:#ccc;line-height:1.7;font-style:italic}
+.fb-quote-tag{margin-top:16px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border:1px solid var(--border);color:var(--muted);display:inline-block}
+.accordion{margin-bottom:3px}
+.acc-header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:var(--card);border:1px solid var(--border);cursor:pointer;user-select:none;transition:background .15s;gap:16px}
+.acc-header:hover{background:var(--card2)}
+.acc-left{display:flex;align-items:center;gap:14px;flex:1}
+.acc-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;border-radius:2px;flex-shrink:0}
+.acc-tag.gap{background:rgba(245,166,35,.12);color:var(--warn);border:1px solid rgba(245,166,35,.2)}
+.acc-tag.own{background:rgba(34,197,94,.12);color:var(--d1);border:1px solid rgba(34,197,94,.2)}
+.acc-tag.flag{background:rgba(167,139,250,.12);color:var(--await);border:1px solid rgba(167,139,250,.2)}
+.acc-title{font-size:14px;font-weight:600;color:var(--text);line-height:1.4}
+.acc-chevron{font-size:20px;color:var(--muted);transition:transform .25s;flex-shrink:0}
+.acc-header.open .acc-chevron{transform:rotate(180deg)}
+.acc-body{display:none;background:var(--card2);border:1px solid var(--border);border-top:none;padding:20px 24px;font-size:13px;color:var(--muted);line-height:1.8}
+.acc-body.open{display:block}
+.acc-body p{margin-bottom:10px}.acc-body p:last-of-type{margin-bottom:0}
+.acc-meta{display:inline-block;margin-top:14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;padding:4px 10px;border:1px solid var(--border);color:var(--muted)}
+.acc-section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:24px 0 10px;display:flex;align-items:center;gap:12px}
+.acc-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.bottomline{background:var(--accent);padding:80px 60px;position:relative;overflow:hidden}
+.bottomline::before{content:'Q2';position:absolute;right:-20px;top:-40px;font-family:'Bebas Neue',sans-serif;font-size:300px;color:rgba(0,0,0,.15);line-height:1;pointer-events:none}
+.bl-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px}
+.bl-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,6vw,88px);line-height:.95;letter-spacing:1px;color:#fff;max-width:900px;margin-bottom:40px}
+.bl-actions{display:flex;gap:2px;flex-wrap:wrap}
+.bl-action{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.15);padding:16px 24px;font-size:13px;color:rgba(255,255,255,.9);flex:1;min-width:200px;line-height:1.6}
+.bl-action strong{display:block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+footer{padding:32px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+@media(max-width:900px){.hero,section,.bottomline,footer{padding-left:24px;padding-right:24px}.hero-stats,.day-grid,.sat-grid,.fb-grid,.fb-themes-row,.fb-quotes-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="site-header"><div class="site-header-inner"><div class="site-eyebrow">North America Region &middot; Q1 2026</div><div class="site-title">Onboarding Capstone &mdash; Q1 2026 Program Dashboard</div><div class="site-tagline">New Employee Onboarding Program &mdash; February 2026 &middot; All data from registration, survey, and email analytics platforms</div></div><div class="nav-accentline"></div><div class="nav-tabs-row"><div class="nav-tab active" onclick="show('p-overview')">Executive Overview</div><div class="nav-tab" onclick="show('p-scores')">Scores &amp; Feedback</div><div class="nav-tab" onclick="show('p-gaps')">Gaps &amp; Priorities</div></div></div>
+
+<div class="page active" id="p-overview">
+<div class="hero"><div class="hero-bg"></div><div class="hero-grid"></div><div class="hero-eyebrow">New Employee Onboarding &middot; Q1 2026 &middot; Executive Overview</div><h1 class="hero-title">Strong<br>Execution.<br><span>Even Stronger</span><br>Evolution.</h1><p class="hero-sub">The question Q2 has to answer is: what do we do to make sure it doesn't stop there?</p><div class="hero-stats"><div class="hstat g"><div class="hstat-n">465</div><div class="hstat-l">Day 1 Attended</div></div><div class="hstat b"><div class="hstat-n">75</div><div class="hstat-l">Day 2 Leaders</div></div><div class="hstat a"><div class="hstat-n">4.49</div><div class="hstat-l">Peak Satisfaction</div></div><div class="hstat w"><div class="hstat-n">55</div><div class="hstat-l">Already Deferred Q2</div></div></div></div>
+
+<section>
+<div class="sec-label reveal">Program Performance</div><h2 class="sec-title reveal">Day 1 vs. Day 2</h2>
+<div class="day-grid reveal">
+<div class="day-card d1"><div class="day-label">Day 1 &middot; Feb 4</div><div class="day-name">All-Employee Capstone</div><div class="day-venue">Grand Ballroom &middot; Main Campus</div><div class="day-metrics"><div><div class="dm-n">465</div><div class="dm-l">Attended</div></div><div><div class="dm-n">98.1%</div><div class="dm-l">Show-Up Rate</div></div><div><div class="dm-n">4.32</div><div class="dm-l">Satisfaction</div></div></div><div class="day-bar-wrap"><div class="day-bar-label"><span>Attended vs. RSVP Yes</span><strong>465 / 474</strong></div><div class="day-bar-track"><div class="day-bar-fill" style="background:var(--d1)" data-w="98.1"></div></div></div><div class="day-bar-wrap" style="margin-top:10px"><div class="day-bar-label"><span>Office vs. Remote</span><strong>61% / 39%</strong></div><div class="day-bar-track"><div class="day-bar-fill" style="background:var(--d1);opacity:.6" data-w="61"></div></div></div><div class="day-pills"><span class="dpill g">661 Invited</span><span class="dpill g">474 RSVP Yes</span><span class="dpill g">9 No-Shows</span><span class="dpill m">82% ICs</span><span class="dpill w">46 Deferred Q2</span></div></div>
+<div class="day-card d2"><div class="day-label">Day 2 &middot; Feb 5</div><div class="day-name">Leaders Capstone</div><div class="day-venue">Innovation Center &middot; Downtown</div><div class="day-metrics"><div><div class="dm-n">75</div><div class="dm-l">Attended</div></div><div><div class="dm-n">92.6%</div><div class="dm-l">Show-Up Rate</div></div><div><div class="dm-n">4.49</div><div class="dm-l">Satisfaction</div></div></div><div class="day-bar-wrap"><div class="day-bar-label"><span>Attended vs. RSVP Yes</span><strong>75 / 81</strong></div><div class="day-bar-track"><div class="day-bar-fill" style="background:var(--d2)" data-w="92.6"></div></div></div><div class="day-bar-wrap" style="margin-top:10px"><div class="day-bar-label"><span>Office vs. Remote</span><strong>61% / 39%</strong></div><div class="day-bar-track"><div class="day-bar-fill" style="background:var(--d2);opacity:.6" data-w="61"></div></div></div><div class="day-pills"><span class="dpill b">139 Invited</span><span class="dpill b">81 RSVP Yes</span><span class="dpill r">6 No-Shows</span><span class="dpill m">56% Managers</span><span class="dpill r">Director+ only 14%</span><span class="dpill w">19 Deferred Q2</span></div></div>
+</div>
+
+<div class="sat-grid reveal">
+<div class="sat-card d1"><div class="sat-ring-wrap"><svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="10"/><circle cx="60" cy="60" r="50" fill="none" stroke="var(--d1)" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="41" stroke-linecap="round"/></svg><div class="sat-ring-label"><div class="sat-ring-n">4.32</div><div class="sat-ring-sub">/ 5.0</div></div></div><div class="sat-info"><div class="sat-title">Day 1 Satisfaction</div><div class="sat-venue">Grand Ballroom &middot; 465 attendees</div><ul class="sat-findings"><li>Strategy Deep Dive &amp; Bold Bets &mdash; highest-rated sessions</li><li>Interactive game session (new) &mdash; fixed afternoon energy dip</li><li>61 attendees opted into focus groups</li><li>Non-technical team relevance gap persists</li></ul></div></div>
+<div class="sat-card d2"><div class="sat-ring-wrap"><svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="10"/><circle cx="60" cy="60" r="50" fill="none" stroke="var(--d2)" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="37" stroke-linecap="round"/></svg><div class="sat-ring-label"><div class="sat-ring-n">4.49</div><div class="sat-ring-sub">/ 5.0</div></div></div><div class="sat-info"><div class="sat-title">Day 2 Satisfaction</div><div class="sat-venue">Innovation Center &middot; 75 leaders</div><ul class="sat-findings"><li>Outperformed Day 1 by 0.17 points</li><li>Ownership &amp; Accountability &mdash; most-cited concept</li><li>Leadership Panel &mdash; emotional high point</li><li>Director+ only 14% of the people-leader room</li></ul></div></div>
+</div>
+
+<div class="verdict-wrap reveal"><div class="verdict-text">The program proved it can <em>deliver the moment</em>. Now it has to prove it can deliver <em>what comes after.</em></div><div class="verdict-attr">&mdash; Q1 Executive Summary</div></div>
+</section>
+</div>
+
+<div class="page" id="p-scores">
+<section>
+<div class="sec-label reveal">Attendee Feedback</div><h2 class="sec-title reveal">What the Room Actually Said</h2>
+<p class="reveal" style="font-size:13px;color:var(--muted);max-width:700px;margin-bottom:32px;line-height:1.7">68 Day 1 responses. 30 Day 2 responses. Low numbers &mdash; but the signal is strong and consistent across both days.</p>
+<div class="fb-response-banner reveal"><div class="fb-response-item"><span class="fb-response-n" style="color:var(--d1)">68</span><span class="fb-response-l">Day 1 responses</span></div><div class="fb-response-item"><span class="fb-response-n" style="color:var(--d2)">30</span><span class="fb-response-l">Day 2 responses</span></div><div class="fb-response-item"><span class="fb-response-n" style="color:var(--warn)">61</span><span class="fb-response-l">Focus group opt-ins</span></div><div class="fb-response-item"><span class="fb-response-n" style="color:var(--await)">4.31 / 4.49</span><span class="fb-response-l">Avg satisfaction</span></div></div>
+<div class="fb-grid reveal">
+<div class="fb-card d1"><div class="fb-card-title">Day 1 &mdash; All-Employee Capstone</div><div class="fb-meta">68 responses &middot; Grand Ballroom &middot; Overall avg 4.31 / 5</div><div class="fb-scores"><div class="fb-score-row"><div class="fb-score-bar-wrap"><span class="fb-score-label">Impactful</span><div class="fb-score-track"><div class="fb-score-fill" style="background:var(--d1)" data-w="84.8"></div></div></div><span class="fb-score-val">4.24</span></div><div class="fb-score-row"><div class="fb-score-bar-wrap"><span class="fb-score-label">Met Expectations</span><div class="fb-score-track"><div class="fb-score-fill" style="background:var(--d1)" data-w="87.4"></div></div></div><span class="fb-score-val">4.37</span></div><div class="fb-score-row"><div class="fb-score-bar-wrap"><span class="fb-score-label">Will Apply</span><div class="fb-score-track"><div class="fb-score-fill" style="background:var(--d1)" data-w="87.6"></div></div></div><span class="fb-score-val">4.38</span></div><div class="fb-score-row"><div class="fb-score-bar-wrap"><span class="fb-score-label">Would Recommend</span><div class="fb-score-track"><div class="fb-score-fill" style="background:var(--d1)" data-w="88.6"></div></div></div><span class="fb-score-val">4.43</span></div><div class="fb-score-row"><div class="fb-score-bar-wrap"><span class="fb-score-label">Worth Time</span><div class="fb-score-track"><div class="fb-score-fill" style="background:var(--d1)" data-w="83.2"></div></div></div><span class="fb-score-val">4.16</span></div></div><div class="fb-sessions-title">Session Ratings (ranked)</div><div class="fb-session-row"><span class="fb-session-rank">1</span><span class="fb-session-name">Bold Bets &amp; Strategy</span><div class="fb-session-bar-wrap"><div class="fb-session-bar" style="background:var(--d1)" data-w="91.8"></div></div><span class="fb-session-val">4.59</span></div><div class="fb-session-row"><span class="fb-session-rank">2</span><span class="fb-session-name">Who We Are</span><div class="fb-session-bar-wrap"><div class="fb-session-bar" style="background:var(--d1);opacity:.8" data-w="85.6"></div></div><span class="fb-session-val">4.28</span></div><div class="fb-session-row"><span class="fb-session-rank">3</span><span class="fb-session-name">Decision Making</span><div class="fb-session-bar-wrap"><div class="fb-session-bar" style="background:var(--d1);opacity:.7" data-w="82.6"></div></div><span class="fb-session-val">4.13</span></div><div class="fb-session-row"><span class="fb-session-rank">4</span><span class="fb-session-name">New Hire Meetup</span><div class="fb-session-bar-wrap"><div class="fb-session-bar" style="background:var(--d1);opacity:.6" data-w="80.6"></div></div><span class="fb-session-val">4.03</span></div><div class="fb-session-row"><span class="fb-session-rank">5</span><span class="fb-session-name">Product Deep Dive</span><div class="fb-session-bar-wrap"><div class="fb-session-bar" style="background:var(--warn);opacity:.8" data-w="78.0"></div></div><span class="fb-session-val" style="color:var(--warn)">3.90</span></div><div class="fb-focus"><div class="fb-focus-n">38</div><div class="fb-focus-text"><strong>56% of Day 1 respondents</strong> opted into a focus group &mdash; the strongest self-selection signal this program has seen.</div></div></div>
+<div class="fb-card d2"><div class="fb-card-title">Day 2 &mdash; Leaders Capstone</div><div class="fb-meta">30 responses &middot; Innovation Center &middot; Overall avg 4.49 / 5</div><div class="fb-scores"><div class="fb-score-row"><div class="fb-score-bar-wrap"><span class="fb-score-label">Impactful</span><div class="fb-score-track"><div class="fb-score-fill" style="background:var(--d2)" data-w="88.0"></div></div></div><span class="fb-score-val">4.40</span></div><div class="fb-score-row"><div class="fb-score-bar-wrap"><span class="fb-score-label">Met Expectations</span><div class="fb-score-track"><div class="fb-score-fill" style="background:var(--d2)" data-w="88.6"></div></div></div><span class="fb-score-val">4.43</span></div><div class="fb-score-row"><div class="fb-score-bar-wrap"><span class="fb-score-label">Will Apply</span><div class="fb-score-track"><div class="fb-score-fill" style="background:var(--d2)" data-w="90.6"></div></div></div><span class="fb-score-val">4.53</span></div><div class="fb-score-row"><div class="fb-score-bar-wrap"><span class="fb-score-label">Would Recommend</span><div class="fb-score-track"><div class="fb-score-fill" style="background:var(--d2)" data-w="90.0"></div></div></div><span class="fb-score-val">4.50</span></div><div class="fb-score-row"><div class="fb-score-bar-wrap"><span class="fb-score-label">Worth Time</span><div class="fb-score-track"><div class="fb-score-fill" style="background:var(--d2)" data-w="91.4"></div></div></div><span class="fb-score-val">4.57</span></div></div><div class="fb-sessions-title">Session Ratings (ranked)</div><div class="fb-session-row"><span class="fb-session-rank">1</span><span class="fb-session-name">Leading in Action</span><div class="fb-session-bar-wrap"><div class="fb-session-bar" style="background:var(--d2)" data-w="82.6"></div></div><span class="fb-session-val">4.13</span></div><div class="fb-session-row"><span class="fb-session-rank">2</span><span class="fb-session-name">Strategy &amp; Bets</span><div class="fb-session-bar-wrap"><div class="fb-session-bar" style="background:var(--d2);opacity:.85" data-w="81.4"></div></div><span class="fb-session-val">4.07</span></div><div class="fb-session-row"><span class="fb-session-rank">3</span><span class="fb-session-name">Building High-Performing Teams</span><div class="fb-session-bar-wrap"><div class="fb-session-bar" style="background:var(--d2);opacity:.75" data-w="80.6"></div></div><span class="fb-session-val">4.03</span></div><div class="fb-session-row"><span class="fb-session-rank">4</span><span class="fb-session-name">Defining Reality</span><div class="fb-session-bar-wrap"><div class="fb-session-bar" style="background:var(--d2);opacity:.7" data-w="79.4"></div></div><span class="fb-session-val">3.97</span></div><div class="fb-session-row"><span class="fb-session-rank">5</span><span class="fb-session-name">Company Mission</span><div class="fb-session-bar-wrap"><div class="fb-session-bar" style="background:var(--warn);opacity:.8" data-w="78.6"></div></div><span class="fb-session-val" style="color:var(--warn)">3.93</span></div><div class="fb-focus"><div class="fb-focus-n">23</div><div class="fb-focus-text"><strong>77% of Day 2 respondents</strong> opted into a leaders focus group &mdash; exceptionally high investment signal.</div></div></div>
+</div>
+<div class="fb-themes-row reveal"><div class="fb-theme-card"><div class="fb-theme-icon">&#10022;</div><div class="fb-theme-label g">What's Working</div><div class="fb-theme-title">Culture orientation landed. Both days, both audiences.</div><div class="fb-theme-body">Ownership, Bold Bets, Decision Making &mdash; attendees left with a felt sense of company values, not just a slide deck version. This is the program's core job. It's working.</div></div><div class="fb-theme-card"><div class="fb-theme-icon">&#x27F3;</div><div class="fb-theme-label w">Design Signal</div><div class="fb-theme-title">Passive absorption isn't learning. Attendees already know this.</div><div class="fb-theme-body">Both days drew consistent requests for table exercises, role-plays, and peer dialogue. Adults don't change behavior by watching slides.</div></div><div class="fb-theme-card"><div class="fb-theme-icon">&#x23F1;</div><div class="fb-theme-label w">Systemic Gap</div><div class="fb-theme-title">Arriving 3&ndash;5 months in means the hardest moments are already behind them.</div><div class="fb-theme-body">The program is designed as orientation &mdash; but most attendees are already oriented. They've navigated their first feedback conversation without the framing this program would have given them.</div></div><div class="fb-theme-card"><div class="fb-theme-icon">&rarr;</div><div class="fb-theme-label r">Unmet Need</div><div class="fb-theme-title">The program ends. The need for community and continuity doesn't.</div><div class="fb-theme-body">Resource summaries, Slack cohorts, 30-day follow-ups &mdash; requested unprompted by both audiences. They're asking for something that says: this conversation doesn't have to end.</div></div></div>
+<div class="fb-quotes-row reveal"><div class="fb-quote-card"><div class="fb-quote-day d1">Day 1 &middot; New Hire</div><span class="fb-quote-mark">&ldquo;</span><div class="fb-quote-text">It would have been more helpful at the beginning of my journey. The learnings would land harder in month one.</div><span class="fb-quote-tag">Timing</span></div><div class="fb-quote-card"><div class="fb-quote-day d1">Day 1 &middot; New Hire</div><span class="fb-quote-mark">&ldquo;</span><div class="fb-quote-text">I loved it overall but wanted something to take home &mdash; a summary, a Slack group, a follow-up. It ended and then&hellip; nothing.</div><span class="fb-quote-tag">Continuity</span></div><div class="fb-quote-card"><div class="fb-quote-day d2">Day 2 &middot; New Leader</div><span class="fb-quote-mark">&ldquo;</span><div class="fb-quote-text">The biggest barrier is the lack of concrete, day-to-day examples showing how these principles should be applied in real situations.</div><span class="fb-quote-tag">Application</span></div></div>
+</section>
+</div>
+
+<div class="page" id="p-gaps">
+<section style="padding-bottom:0">
+<div class="sec-label reveal">Honest Assessment</div><h2 class="sec-title reveal">Gaps &amp; Priorities</h2><p class="reveal" style="font-size:13px;color:var(--muted);max-width:680px;margin-bottom:36px;line-height:1.7">Click any item to expand. Gaps are design questions worth getting curious about. Priorities are split by who owns the answer.</p>
+<div class="acc-section-label reveal" style="color:var(--warn)">&#x2B21; 3 Gaps From Q1</div>
+<div class="accordion reveal"><div class="acc-header" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag gap">Missing Story</span><span class="acc-title">We only told the wins. Attendees noticed.</span></div><span class="acc-chevron">&#x2304;</span></div><div class="acc-body"><p>New employees are smart. When a program only shows success stories, they don't feel inspired &mdash; they feel managed. Both days would benefit from one real pivot: what changed, why it failed first, and what was learned.</p><span class="acc-meta">Both Days &middot; Content Design</span></div></div>
+<div class="accordion reveal"><div class="acc-header" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag gap">Content Design</span><span class="acc-title">Non-technical employees attended a program not fully built for them.</span></div><span class="acc-chevron">&#x2304;</span></div><div class="acc-body"><p>Legal, Finance, and Communications make up ~20% of both rooms. One bridge moment &mdash; a facilitated question or a single slide &mdash; changes the felt experience for a fifth of the room.</p><span class="acc-meta">Day 1 &middot; ~20% of attendees affected</span></div></div>
+<div class="accordion reveal"><div class="acc-header" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag gap">Strategic Question</span><span class="acc-title">0 of 5 VP+ attended. Before we escalate, we should get curious.</span></div><span class="acc-chevron">&#x2304;</span></div><div class="acc-body"><p>Is this the right format for VP+ onboarding? A separate executive track &mdash; different structure, different cadence &mdash; may be more effective.</p><span class="acc-meta">Both Days &middot; Requires leadership conversation</span></div></div>
+<div class="acc-section-label reveal" style="color:var(--d1)">&#x2713; We Own &mdash; Q2 Delivery Changes</div>
+<div class="accordion reveal"><div class="acc-header" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag own">Survey</span><span class="acc-title">Shorten the survey. Add a QR code. Capture feedback in the room.</span></div><span class="acc-chevron">&#x2304;</span></div><div class="acc-body"><p>Day 2's 40% response rate was driven by in-room distribution. Day 1 had 33% abandonment. Fix: 5 questions max, QR on the final slide, 3 minutes before dismissal.</p><span class="acc-meta">Owner: Program Lead &middot; Before Q2</span></div></div>
+<div class="accordion reveal"><div class="acc-header" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag own">Email</span><span class="acc-title">Cut the post-event email to 5 links max. One featured CTA.</span></div><span class="acc-chevron">&#x2304;</span></div><div class="acc-body"><p>Day 2's email had 17 links. 13 got zero clicks. For Q2: survey as the hero CTA, two curated resources, done.</p><span class="acc-meta">Owner: Program Lead &middot; Ready pre-Q2</span></div></div>
+<div class="accordion reveal"><div class="acc-header" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag own">Ownership</span><span class="acc-title">Name one owner per day. Not a team. One person.</span></div><span class="acc-chevron">&#x2304;</span></div><div class="acc-body"><p>Day 1 and Day 2 are distinct programs. Shared ownership is where accountability quietly disappears.</p><span class="acc-meta">Owner: Program Team &middot; March 2026</span></div></div>
+<div class="acc-section-label reveal" style="color:var(--await)">&#x2197; Needs Leadership Conversation</div>
+<div class="accordion reveal"><div class="acc-header" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag flag">Capacity</span><span class="acc-title">Two cohorts or alternative model? Decision needed before Q2 locks.</span></div><span class="acc-chevron">&#x2304;</span></div><div class="acc-body"><p>At the likely scenario, Q2 demand hits 505 &mdash; approaching the venue's single-day limit.</p><span class="acc-meta">Raise to: Global Program Lead</span></div></div>
+<div class="accordion reveal"><div class="acc-header" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag flag">VP+ Pathway</span><span class="acc-title">Should VP+ have a separate executive onboarding journey?</span></div><span class="acc-chevron">&#x2304;</span></div><div class="acc-body"><p>0 of 5 VP+ attended. A separate executive track may be more effective and respectful.</p><span class="acc-meta">Raise to: Leadership Team</span></div></div>
+<div class="accordion reveal"><div class="acc-header" onclick="toggleAcc(this)"><div class="acc-left"><span class="acc-tag flag">Continuity</span><span class="acc-title">Add a continuity layer &mdash; Slack cohort, 30-day follow-up, or resource digest.</span></div><span class="acc-chevron">&#x2304;</span></div><div class="acc-body"><p>Both audiences asked unprompted for something after the event. Low-lift, high-signal investments that extend the program beyond the room.</p><span class="acc-meta">Raise to: Global Program Team</span></div></div>
+</section>
+
+<div class="bottomline reveal"><div class="bl-label">The Bottom Line</div><div class="bl-title">The program proved it can deliver the moment.<br><span style="font-size:.7em;opacity:.85">Now it needs to deliver what comes after it.</span></div><div class="bl-actions"><div class="bl-action"><strong>What Q1 Proved</strong>465 attended Day 1, 75 attended Day 2. Near-perfect show-up. 4.31 and 4.49 satisfaction. 61 volunteered for focus groups. The foundation is solid.</div><div class="bl-action"><strong>What the Data Says</strong>The event works. What comes after doesn't exist yet. No structured follow-up. No senior leadership signal in the room. The program ends when the real learning should begin.</div><div class="bl-action"><strong>What's Next</strong>Fix what we control: survey, day owners, content bridge. Raise what we can't: capacity, VP+ pathway, continuity design. The goal: evolve from a calendar moment into a sustained journey.</div></div></div>
+<footer><span>New Employee Onboarding &middot; Q1 2026</span><span>Built by Helena Cohee</span><span>Sample data for demonstration</span></footer>
+</div>
+
+<script>
+function toggleAcc(h){var b=h.nextElementSibling;var o=h.classList.contains('open');h.classList.toggle('open',!o);b.classList.toggle('open',!o)}
+function show(id){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active')});document.getElementById(id).classList.add('active');event.target.classList.add('active');window.scrollTo(0,0);setTimeout(function(){animateBars(document.getElementById(id))},80)}
+function animateBars(c){c.querySelectorAll('.day-bar-fill,.fb-score-fill,.fb-session-bar').forEach(function(el){el.style.width='0';setTimeout(function(){el.style.width=(el.dataset.w||0)+'%'},30)});c.querySelectorAll('.reveal').forEach(function(el,i){el.style.opacity='0';el.style.transform='translateY(20px)';setTimeout(function(){el.style.transition='opacity .6s ease, transform .6s ease';el.style.opacity='1';el.style.transform='translateY(0)'},i*80)})}
+window.addEventListener('load',function(){setTimeout(function(){animateBars(document.getElementById('p-overview'))},200)});
+</script>
+</body>
+</html>
